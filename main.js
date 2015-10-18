@@ -1,5 +1,5 @@
 var canvas, context;
-var rowHeight, tileSize;
+var rowHeight, tileSize, tilesPerRow;
 var tlc = ['#FF00FF', '#00FFFF'];
 
 function sortByStartTime(arr) {
@@ -19,7 +19,7 @@ function sortByStartTime(arr) {
 
 function getData() {
     var reddit = Array();
-    reddit.push( ["Math", "100", "7"] );
+    reddit.push( ["Math", "102", "7"] );
     reddit.push( ["Health", "110", "7"] );
     return reddit;
 }
@@ -34,8 +34,8 @@ function presentData() {
         //
         for (var j = 0; j < len; j++) {
             var k = start + j;
-            var r = parseInt(k / 36);
-            var c = k % 36;
+            var r = parseInt(k / tilesPerRow);
+            var c = k % tilesPerRow;
             
             context.beginPath();
             context.rect(c * tileSize + 65, r * rowHeight + 100, tileSize, tileSize);
@@ -45,8 +45,8 @@ function presentData() {
             context.fill();
         }
         
-        var r = parseInt(start / 36);
-        var c = start % 36;
+        var r = parseInt(start / tilesPerRow);
+        var c = start % tilesPerRow;
         context.font = "14px Arial";
         context.fillStyle='#000000';
         context.fillText(name, c * tileSize + 66, r * rowHeight + 98 , 115);
@@ -66,8 +66,8 @@ function fillColor(color) {
 function drawTimeLine() {
     for (var i = 0; i < 144; i++) {
         
-        var r = parseInt(i / 36);
-        var c = i % 36;
+        var r = parseInt(i / tilesPerRow);
+        var c = i % tilesPerRow;
         
         context.beginPath();
         context.rect(c * tileSize + 65, r * rowHeight + 100, tileSize, tileSize);
@@ -86,8 +86,9 @@ function init() {
     canvas = document.getElementById("bar");
     context = canvas.getContext('2d');
     
-    rowHeight = 100
-    tileSize = 16
+    rowHeight = 100;
+    tileSize = 16;
+    tilesPerRow = 144 / 4;
     
     fillColor('#FFFFFF');
     drawTimeLine();
