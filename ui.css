@@ -1,0 +1,17 @@
+td {
+    background-color: #00ffcf;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+td, a {
+    font-family: 'Arial';
+}
+
+#addDiv, #timeline {
+    background-color: #ffcf00;
+    border-radius: 10px;
+    padding: 10px;
+    display: block;
+     
+}
